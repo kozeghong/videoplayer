@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>How to use VideoPlayer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript">
+        function btnok() {
+            var url = document.getElementById("videourl").value;
+            var height = document.getElementById("videoheight").value;
+            var width = document.getElementById("videowidth").value;
+            if(url) {
+                document.getElementById("iframeurl").innerHTML = '/videoplayer/?src='+url;
+                document.getElementById("codebox").innerHTML = '<iframe src="/videoplayer/?src='+url+'" height="'+height+'" width="'+width+'" frameborder="no" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen=""></iframe>';
+            }
+        }
+    </script>
+</head>
+<body>
+    <p>Video URL: </p>
+    <p><input type="text" id="videourl" name="videourl" style="width: 300px;"></p>
+    <p>Height: </p>
+    <p><input type="text" id="videoheight" name="videoheight" value="480"></p>
+    <p>Width: </p>
+    <p><input type="text" id="videowidth" name="videowidth" value="640"></p>
+    <p><input type="button" value="OK" onclick="btnok();"></p>
+    <p>CODE: </p>
+    <p><textarea id="codebox" rows="10" cols="50"></textarea></p>
+    <p>Iframe URL: </p>
+    <p><textarea id="iframeurl" rows="10" cols="50"></textarea></p>
+</body>
+</html>
