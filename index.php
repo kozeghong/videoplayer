@@ -18,8 +18,25 @@
             || document.documentElement.clientWidth
             || document.body.clientWidth;
         var flashvars = {
-            src: "<?php echo $video_url; ?>"
-            , autoPlay: false
+            src: "<?php echo $video_url; ?>",
+            autoPlay: false,
+            plugin_hls: "flashls/flashlsOSMF.swf",
+            hls_minbufferlength: -1,
+            hls_maxbufferlength: 30,
+            hls_lowbufferlength: 3,
+            hls_seekmode: "SEGMENT",
+            hls_startfromlevel: -1,
+            hls_seekfromlevel: -1,
+            hls_live_flushurlcache: false,
+            hls_info: true,
+            hls_debug: false,
+            hls_debug2: false,
+            hls_warn: true,
+            hls_error: true,
+            hls_fragmentloadmaxretry : -1,
+            hls_manifestloadmaxretry : -1,
+            hls_capleveltostage : false,
+            hls_maxlevelcappingmode : "downscale"
         };
         var params = {
             allowFullScreen: true
@@ -59,7 +76,11 @@
     <div id="player"></div>
     <script type="text/javascript">
         if(!hasFlash||support_video()) {
+            <?php if(strtolower(substr($video_url,-5))=='.m3u8') {?>
+            document.write('<video id="my-video" class="video-js" controls="controls" width="'+windowwidth+'" height="'+(windowheight-4)+'" data-setup="{}"><source src="<?php echo $video_url; ?>" type="application/x-mpegURL"></video>');
+            <?php } else { ?>
             document.write('<video id="my-video" class="video-js" src="<?php echo $video_url; ?>" controls="controls" width="'+windowwidth+'" height="'+(windowheight-4)+'" data-setup="{}"></video>');
+            <?php } ?>
         }
     </script>
     
