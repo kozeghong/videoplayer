@@ -1,10 +1,14 @@
 <?php
     $video_url = $_GET['src'];
+    $poster_url = $_GET['poster'];
 ?><!DOCTYPE html>
 <html>
 <head>
     <title>VideoPlayer</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="HandheldFriendly" content="true" />
     <link href="video-js-5.17.0/video-js.min.css" rel="stylesheet">
     <script type="text/javascript" src="swfobject.js"></script>
     <!-- If you'd like to support IE8 -->
@@ -77,9 +81,9 @@
     <script type="text/javascript">
         if(!hasFlash||support_video()) {
             <?php if(strtolower(substr($video_url,-5))=='.m3u8') {?>
-            document.write('<video id="my-video" class="video-js" controls="controls" width="'+windowwidth+'" height="'+(windowheight-4)+'" data-setup="{}"><source src="<?php echo $video_url; ?>" type="application/x-mpegURL"></video>');
+            document.write('<video id="my-video" class="video-js" controls="controls" width="'+windowwidth+'" height="'+(windowheight-4)+'" data-setup="{}" <?php if($poster_url) { ?>poster="<?php echo $poster_url ?>"<?php } ?>><source src="<?php echo $video_url; ?>" type="application/x-mpegURL"></video>');
             <?php } else { ?>
-            document.write('<video id="my-video" class="video-js" src="<?php echo $video_url; ?>" controls="controls" width="'+windowwidth+'" height="'+(windowheight-4)+'" data-setup="{}"></video>');
+            document.write('<video id="my-video" class="video-js" src="<?php echo $video_url; ?>" controls="controls" width="'+windowwidth+'" height="'+(windowheight-4)+'" data-setup="{}" <?php if($poster_url) { ?>poster="<?php echo $poster_url ?>"<?php } ?>></video>');
             <?php } ?>
         }
     </script>
